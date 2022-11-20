@@ -319,10 +319,10 @@ var matchers = {
 
   '$regex': function (doc, userValue, parsedField, docFieldValue) {
     return fieldExists(docFieldValue) &&
-      typeof docFieldValue == "string" &&
-      userValue.every(function (regexValue) {
-        return regexMatch(docFieldValue, regexValue);
-      });
+      typeof docFieldValue == "string" && regexMatch(docFieldValue, userValue);
+      // userValue.every(function (regexValue) {
+      //   return regexMatch(docFieldValue, regexValue);
+      // });
   },
 
   '$type': function (doc, userValue, parsedField, docFieldValue) {
