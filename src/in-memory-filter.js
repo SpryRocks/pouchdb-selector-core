@@ -295,6 +295,9 @@ var matchers = {
   },
 
   '$ne': function (doc, userValue, parsedField, docFieldValue) {
+    if (typeof userValue === "string") {
+      return collate(docFieldValue, userValue);
+    }
     return userValue.every(function (neValue) {
       return collate(docFieldValue, neValue) !== 0;
     });
