@@ -195,7 +195,9 @@ function arraySize(docFieldValue, userValue) {
 }
 
 function regexMatch(docFieldValue, userValue) {
-  var re = new RegExp(userValue);
+  var re = !Array.isArray(userValue) ?
+      new RegExp(userValue) :
+      new RegExp(userValue[0], userValue[1]);
 
   return re.test(docFieldValue);
 }
